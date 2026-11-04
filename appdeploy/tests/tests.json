@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Inspect secured voice studio and engine requirement",
+    "sanity": true,
+    "viewport": "desktop",
+    "covers": [
+      "private app access",
+      "engine status",
+      "open-source model disclosure",
+      "live backend status"
+    ],
+    "description": "Verifies the real ChatterboxVC engine dependency is stated rather than claiming to run inference without a configured GPU.",
+    "steps": [
+      "Open the app in a signed-out browser",
+      "Inspect the conversion workspace and model status card",
+      "Confirm the app offers a sign-in control and indicates GPU connection is required"
+    ],
+    "expected": "The page clearly identifies ChatterboxVC and notes a separate GPU engine is required. It does not claim to have generated audio."
+  },
+  {
+    "name": "Reject conversion without uploaded files",
+    "viewport": "mobile",
+    "covers": [
+      "missing-file validation",
+      "upload inputs",
+      "responsive mobile workflow"
+    ],
+    "description": "Verifies an empty request cannot start a voice-conversion job on mobile.",
+    "steps": [
+      "Open the studio at mobile viewport",
+      "Without selecting either audio file, press Generate cloned voiceover"
+    ],
+    "expected": "A visible message asks for both an original voiceover and a target voice sample; no output is shown."
+  },
+  {
+    "name": "Choose export format and confirm consent independently",
+    "viewport": "desktop",
+    "covers": [
+      "MP3 and WAV selection",
+      "voice-use permission confirmation",
+      "conversion settings"
+    ],
+    "description": "Verifies users can select WAV or MP3 and affirm permission without initiating voice conversion.",
+    "steps": [
+      "Select WAV as the output format",
+      "Tick the voice-permission checkbox",
+      "Select MP3 again"
+    ],
+    "expected": "The highlighted export-format selection switches correctly and the consent checkbox stays checked."
+  },
+  {
+    "name": "Show accurate explanation of requirements",
+    "viewport": "mobile",
+    "covers": [
+      "technical notes disclosure",
+      "model integration status",
+      "mobile sidebar content"
+    ],
+    "description": "Verifies that the technical notes show the hosting and GPU requirements and can be expanded on small screens.",
+    "steps": [
+      "Scroll to the Quick Start panel",
+      "Press Technical notes to expand it"
+    ],
+    "expected": "The technical notes explain that the AI runs on a separate GPU-enabled server and does not use a paid conversion API."
+  }
+]
